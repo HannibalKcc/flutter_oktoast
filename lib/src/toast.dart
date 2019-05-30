@@ -37,6 +37,8 @@ class OKToast extends StatefulWidget {
 
   final TextAlign textAlign;
 
+  final Function cbOverLay; // 允许获取 context
+
   const OKToast({
     Key key,
     @required this.child,
@@ -49,6 +51,7 @@ class OKToast extends StatefulWidget {
     Color backgroundColor,
     this.textPadding,
     this.textAlign,
+    this.cbOverLay,
   })  : this.backgroundColor = backgroundColor ?? const Color(0xDD000000),
         super(key: key);
 
@@ -75,6 +78,7 @@ class _OKToastState extends State<OKToast> {
         OverlayEntry(
           builder: (ctx) {
             _contextMap[this] = ctx;
+            if(widget.cbOverLay != null) widget.cbOverLay(ctx);
             return widget.child;
           },
         ),
