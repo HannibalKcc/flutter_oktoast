@@ -202,6 +202,7 @@ ToastFuture showToast(
 ToastFuture showToastWidget(
   Widget widget, {
   BuildContext context,
+  bool ignoring = true,
   Duration duration = _defaultDuration,
   VoidCallback onDismiss,
   bool dismissOtherToast,
@@ -222,6 +223,7 @@ ToastFuture showToastWidget(
 
   entry = OverlayEntry(builder: (ctx) {
     return IgnorePointer(
+      ignoring: ignoring,
       child: _ToastContainer(
         duration: duration,
         position: position,
